@@ -10,21 +10,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var time = 0
+        // Timer initilized
+        var timer = 0
 
+
+        // Infinity loop
         while (true){
+            // Coroutine scope
             CoroutineScope(Dispatchers.IO).launch{
-
                 val answer = doNetworkCall()
                 withContext(Dispatchers.Main){
                     Log.v("PATIKA",answer)
                 }
             }
-            println(time)
-            time += 1
+            println(timer)
+            timer += 1
         }
     }
 
+    // Suspend function, 2 sec delay
     suspend fun doNetworkCall() :String{
         delay(2000L)
         return "PATIKA DEV"
